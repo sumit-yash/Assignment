@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean class="com.yash.ioc.Question3.Parallelogram" id="p1" parent="shape">
+	</bean>
+
+	<bean class="com.yash.ioc.Question3.Triangle" id="t1" parent="shape">
+	</bean>
+
+	<bean class="com.yash.ioc.Question3.Shape" id="shape" abstract="true">
+	</bean>
+
+	<bean class="com.yash.ioc.Question3.Rectangle" id="r1" parent="shape">
+	</bean>
+
+	<bean class="com.yash.ioc.Question3.DrawShape" id="ds1">
+	</bean>
+
+</beans>
