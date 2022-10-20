@@ -1,0 +1,152 @@
+<!-- hospital form start -->
+<div class="shadow p-3 mb-5 bg-white rounded">
+    <form [formGroup]="appointmentForm" style="border:1px solid #ccc" class="w-50 mx-auto"
+        (ngSubmit)="submitAppointmentForm(appointmentForm.value)">
+        <div class="container">
+
+            <h1>Appointment</h1>
+            <hr>
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="hname"><b>Hospital Name</b></label>
+                    <input type="text" placeholder="Enter Name of Hospital" formControlName="hname" readonly>
+                    <span *ngIf="appointmentForm.controls['hname'].invalid && appointmentForm.controls['hname'].touched"
+                        class="text-danger">
+                        Please provide a valid name.
+                    </span>
+                </div>
+                <div class="col-md-4">
+                    <label for="haddress"><b>Hospital Address</b></label>
+                    <input type="text" placeholder="Enter Hospital Address" formControlName="haddress" readonly>
+                    <span
+                        *ngIf="appointmentForm.controls['haddress'].invalid && appointmentForm.controls['haddress'].touched"
+                        class="text-danger">
+                        Please provide a valid address.
+                    </span>
+                </div>
+                <div class="col-md-4">
+                    <label for="bedCount"><b>Hospital Bed Count</b></label>
+                    <input type="number" placeholder="Enter Hospital Address" formControlName="bedCount" readonly>
+                    <span
+                        *ngIf="appointmentForm.controls['bedCount'].invalid && appointmentForm.controls['bedCount'].touched"
+                        class="text-danger">
+                        Please provide a valid bedCount.
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <span>Please add speciality.</span>
+                    <hr>
+                    <label for="spty"><b>Name of Speciality</b></label>
+                    <input type="text" placeholder="Enter Speciality" formControlName="spty" readonly>
+                    <span *ngIf="appointmentForm.controls['spty'].invalid && appointmentForm.controls['spty'].touched"
+                        class="text-danger">
+                        Please provide a valid Speciality.
+                    </span>
+                </div>
+            </div>
+
+            <!-- </div> -->
+            <p>Doctor</p>
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="dfname"><b>Doctor First Name</b></label>
+                    <input type="text" placeholder="Doctor First Name" formControlName="dfname" readonly>
+                    <span
+                        *ngIf="appointmentForm.controls['dfname'].invalid && appointmentForm.controls['dfname'].touched"
+                        class="text-danger">
+                        Please provide a valid Name.
+                    </span>
+                </div>
+                <div class="col-md-6">
+                    <label for="dLastName"><b>Doctor Last Name</b></label>
+                    <input type="text" placeholder="Doctor Last Name" formControlName="dLastName" readonly>
+                    <span
+                        *ngIf="appointmentForm.controls['dLastName'].invalid && appointmentForm.controls['dLastName'].touched"
+                        class="text-danger">
+                        Please provide a valid Name.
+                    </span>
+                </div>
+            </div>
+            <p>Enter Room Details</p>
+            <hr>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="rcat"><b>Room Category </b></label>
+                    <input type="text" placeholder="Room Category" formControlName="rcat" readonly>
+                    <span *ngIf="appointmentForm.controls['rcat'].invalid && appointmentForm.controls['rcat'].touched"
+                        class="text-danger">
+                        Please provide a valid Name.
+                    </span>
+                </div>
+                <div class="col-md-6">
+                    <label for="rcatRate"><b>Room Category Rate</b></label><br>
+                    <input type="number" placeholder="Room Category Rate" formControlName="rcatRate" readonly>
+                    <span
+                        *ngIf="appointmentForm.controls['rcatRate'].invalid && appointmentForm.controls['rcatRate'].touched"
+                        class="text-danger">
+                        Please provide a valid Rate.
+                    </span>
+                </div>
+            </div>
+            <span>Date</span>
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="edate"><b>Enter Start Date</b></label><br>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Choose a date</mat-label>
+                        <input matInput [matDatepicker]="picker1" formControlName="picker1">
+                        <mat-hint>dd/MM/yyyy</mat-hint>
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <label for="edate"><b>Enter End Date</b></label><br>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Choose a date</mat-label>
+                        <input matInput [matDatepicker]="picker2" formControlName="picker2">
+                        <mat-hint>dd/MM/yyyy</mat-hint>
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field>
+
+                </div>
+            </div>
+
+
+
+            <!-- <label for="password"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" formControlName="password" >
+      <span *ngIf="addHospital.controls['password'].invalid && addHospital.controls['password'].touched" class="text-danger">
+        Please provide a valid Password.
+      </span> -->
+
+
+            <!-- <label for="psw-repeat"><b>Repeat Password</b></label>
+      <input type="password" name="psw-repeat" placeholder="Confirm Password" formControlName="cpassword">
+      <span *ngIf="addHospital.controls['cpassword'].invalid && addHospital.controls['cpassword'].touched" class="text-danger">
+        Please provide a valid Email.
+      </span> -->
+
+            <!-- <label>
+        <input type="checkbox" name="remember" style="margin-bottom:15px"> Remember me
+      </label> -->
+
+            <!-- <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p> -->
+
+            <div class="clearfix">
+                <!-- <button type="reset" class="cancelbtn" (click)="cleanForm()">Reset</button> -->
+                <button type="submit" [disabled]="appointmentForm.invalid" class="mt-4">Book Appointment</button>
+            </div>
+        </div>
+
+
+    </form>
+</div>
+
+<!-- hospital form end -->

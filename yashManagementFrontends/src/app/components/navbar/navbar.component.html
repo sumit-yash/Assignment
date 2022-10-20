@@ -1,0 +1,69 @@
+<nav class="navbar navbar-expand-lg bg-light background">
+    <div class="container-fluid">
+        <div class="navbar-brand">H M S</div>
+        <div class="navbar-brand hide">Hospital Management System</div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contactUs">ContactUs</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="/hospital">Hospital</a>
+                </li> -->
+            </ul>
+
+            <!-- <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form> -->
+
+            <!-- <div *ngIf="isValid; then content else content2"></div>
+            <ng-template #content>here is if</ng-template>
+            <ng-template #content2>here is else</ng-template> -->
+
+
+            <div *ngIf="isValid; then content else other_content">here is ignored</div>
+            <ng-template #content>
+                <div class="btn-group" >
+                    <a class="btn btn-primary dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                       Logout
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- <li><a class="dropdown-item" href="/dashboard">Profile</a></li> -->
+                        <li><a class="dropdown-item" (click)="logout();">logout</a></li>
+                    </ul>
+                </div>
+            </ng-template>
+            <ng-template #other_content>
+                <div class="btn-group" >
+                    <a class="btn btn-primary dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Login
+                    </a>
+                    <!-- <ul class="dropdown-menu"> -->
+                    <ul class="dropdown-menu dropdown-menu-lg-end">
+                        <li><a class="dropdown-item" href="/login">Login</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="/register">Registration</a></li>
+                    </ul>
+                </div>
+            </ng-template>
+
+        </div>
+    </div>
+</nav>

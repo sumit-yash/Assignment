@@ -1,0 +1,88 @@
+<div class="container">
+    <div class="card rounded p-4">
+        <h1 style="text-align:center;">Receipt</h1>
+        <h1>Hello {{patient.fname}} {{patient.lname}},</h1>
+        
+
+
+        <div class="row">
+            <div class="col-md-4">
+                <p class="labelD">Name of Hospital:</p>
+                <p>{{hospital.hospitalName}}</p>
+            </div>
+            <div class="col-md-4">
+                <p class="labelD">Hospital Address</p>
+                <p>{{hospital.address}}</p>
+            </div>
+            <div class="col-md-4">
+                <p class="labelD">Speciality</p>
+                <p>{{sp.specialityName}}</p>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <p class="labelD">Doctor Appointed</p>
+                <p>{{dt.docFirstName}} {{dt.docLastName}}</p>
+            </div>
+            <!-- <div class="col-md-4">
+                <p class="labelD">Doctor Appointed</p>
+                <p>{{dt.docFirstName}} {{dt.docLastName}}</p>
+            </div> -->
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <p class="labelD">Room Category</p>
+                <p>{{rc.catName}}</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <p class="labelD">From Date</p>
+                <p>{{appBook.startDate}}</p>
+            </div>
+            <div class="col-md-4">
+                <p class="labelD">End Date</p>
+                <p>{{appBook.endDate}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <h2 style="color: green;">Total Bill Paid :  &#8377; {{totalFees}}</h2>
+            </div>
+        </div>
+
+
+        <!-- <div class="col-3">
+            <p  class="labelD">Hospital Address</p>
+            <p>{{appBook.hospital.address}}</p> 
+        </div> -->
+        <!-- <div class="col-3">
+            <p  class="labelD">Speciality</p>
+            <p>{{sp.specialityName}}</p>
+        </div> -->
+        <!-- <div class="col-3">
+            <p  class="labelD">Doctor Appointed</p>
+            <p>{{dt.docFirstName}} {{dt.docLastName}}</p>
+        </div> -->
+        <!-- <div class="col-3">
+            <p class="labelD">Room Category</p>
+            <p>{{rc.catName}}</p>
+        </div> -->
+        <!-- <div class="col-3">
+            <p class="labelD">From Date</p>
+            <p>{{appBook.startDate}}</p>
+        </div>-->
+        <!-- <div class="col-3">
+            <p class="labelD">End Date</p>
+            <p>{{appBook.endDate}}</p>
+        </div> -->
+        <!-- <div class="col-3">
+            <b class="labelD">Total Bill Paid</b>
+            <p>&#8377; {{totalFees}}</p>
+        </div> -->
+    </div>
+</div>

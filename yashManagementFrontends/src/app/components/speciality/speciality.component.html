@@ -1,0 +1,40 @@
+<form class="modal-content animate" #speciality (ngSubmit)="getSpeciality()">
+  <div class="container">
+    <h1>View Speciality Details</h1>
+    <div class="row">
+      <div class="col-md-4">
+        <input type="text" name="specialityName" [(ngModel)]="specialityName" placeholder="Enter Speciality Name">
+      </div>
+      <div class="col-md-4">
+        <button> Check </button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<form class="modal-content animate" [formGroup]="specialityForm" (ngSubmit)="submitSpeciality(specialityForm.value)">
+  <!-- <div class="imgcontainer"> -->
+  <!-- <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="img_avatar2.png" alt="Avatar" class="avatar"> -->
+
+  <!-- </div> -->
+  <div class="container">
+    <h1>Add Speciality</h1>
+    <label for="sname"><b>Enter Speciality Name</b></label>
+    <input type="text" placeholder="Enter Speciality Name" formControlName="sname">
+
+    <label for="docfname"><b>Enter Doctor First Name</b></label>
+    <input type="text" placeholder="Enter Doctor First Name" formControlName="docfname">
+
+    <label for="doclname"><b>Enter Doctor Last Name</b></label>
+    <input type="text" placeholder="Enter Doctor Last Name" formControlName="doclname">
+
+    <button type="submit">Add Details</button><br>
+    <!-- <a (click)="getSpeciality()">Get Speciality</a>? -->
+  </div>
+
+  <!-- <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+      <span class="psw">Forgot <a href="#">password?</a></span>
+    </div> -->
+</form>

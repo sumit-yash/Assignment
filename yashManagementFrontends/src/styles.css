@@ -1,0 +1,8 @@
+body{
+    /* background-image: url('../src/assets/Images/hd1.jpg'); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* object-position: bottom; */
+ } 
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

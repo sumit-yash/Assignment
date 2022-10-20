@@ -1,0 +1,83 @@
+<div class="container">
+
+    <!-- <h2>{{patient.mname}},</h2>
+    <h2>{{patient.lname}},</h2>
+    <h2>{{patient.email}},</h2> -->
+    <!-- <div *ngIf="checkAdmin; then content else other_content">here is ignored</div>
+    <ng-template #content>
+        <h1>Hello Admin,</h1>
+        <button class="btn btn-secondary admin" routerLink="/hospital">Add Hospital</button>
+        <button class="btn btn-secondary admin" routerLink="/speciality">Add Speciality</button>
+         <button class="btn btn-secondary admin">Add Doctor</button> 
+         <button class="btn btn-secondary admin">Add Room Category</button>
+        <button class="btn btn-secondary admin" routerLink="/admin">Get All Patient</button>
+        <button class="btn btn-secondary admin" routerLink="/speciality">Get Speciality</button>
+    </ng-template> -->
+    <!-- <ng-template #other_content> -->
+        <h2>Hello {{patient.fname.toUpperCase()}} ,</h2>
+        <button class="btn btn-success pbutton" (click)="update()">Update patient Details</button>
+        <button class="btn btn-success pbutton" (click)="delete()">Delete patient Details</button>
+    <!-- </ng-template> -->
+
+</div>
+
+<form>
+    <form class="w-50 mx-auto" (ngSubmit)="searchHospitals()">
+        <div class="container">
+           
+            <div class="row">
+                <div class="col-md-12">
+                    <label for="hadd"><b>Enter Hospital Address</b></label>
+                    <input type="text" placeholder="Enter Address of Hospital which you want to search" [(ngModel)]="hadd" name="hadd">
+                </div>
+                <div class="col-md-12">
+                    <button class="btn btn-secondary" >Search Hospitals</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="container" *ngIf="showDiv">
+        <h1 style="text-align: left;">Hospital List</h1>
+        <div class="card" *ngFor="let hospital of hospitalArr">
+            <div class="row" >
+                <div class="col-md-3">
+                    <label class="details">Hospital Id:</label>
+                    <p>{{hospital.hospitalId}}</p>
+                </div>
+                <div class="col-md-3">
+                    <label class="details">Hospital Name:</label>
+                    <p>{{hospital.hospitalName}}</p>
+                </div>
+                <div class="col-md-3">
+                    <label class="details">Hospital Address:</label>
+                    <p>{{hospital.address}}</p>
+                </div>
+                <div class="col-md-3">
+                    <label class="details">Hospital Bed Count:</label>
+                    <p>{{hospital.bedCount}}</p>
+                </div>
+                <div class="col-md-3">
+                    <label class="details">Speciality Name:</label>
+                    <p>{{hospital.speciality.specialityName}}</p>
+                </div>
+                <div class="col-md-3">
+                    <label class="details">Doctor Name:</label>
+                    <p>{{hospital.speciality.doctor.docFirstName}}
+                        {{hospital.speciality.doctor.docLastName}}</p>
+                </div>
+                <div class="col-md-3">
+                    <label class="details">Category Name:</label>
+                    <p>{{hospital.roomCategory.catName}}</p>
+                </div>
+                <div class="col-md-3">
+                    <label class="details">Category Rate:</label>
+                    <p>{{hospital.roomCategory.catRate}}</p>
+                </div>
+                <div class="col-md-3">
+                    <button class="btn btn-success" (click)="bookAppointment(hospital.hospitalId)"> Book Appointment </button>
+                </div>
+
+            </div>
+        </div>
+    </div>

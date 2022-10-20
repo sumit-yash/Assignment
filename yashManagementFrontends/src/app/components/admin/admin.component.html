@@ -1,0 +1,88 @@
+<div class="split left">
+    <div class="container ">
+        <div class="row">
+            <h1>Hello Admin,</h1>
+
+            <button class="btn btn-secondary" (click)="toggle('addHospital')">Add Hospital</button>
+        </div>
+        <div class="row">
+            <button class="btn btn-secondary" (click)="toggle('addSpeciality')">Add Speciality</button>
+        </div>
+        <!-- <button class="btn btn-secondary admin">Add Doctor</button> 
+         <button class="btn btn-secondary admin">Add Room Category</button> -->
+        <div class="row">
+            <button class="btn btn-secondary" (click)="toggle('showPatientList')">Get All Patient</button>
+        </div>
+        <div class="row">
+            <button class="btn btn-secondary" (click)="toggle('getSpeciality')">Get Speciality</button>
+        </div>
+    </div>
+</div>
+<div class="split right">
+    <div class="container">
+        <div class="container" *ngIf="showPatientList">
+            <h1>Patient List</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Middle Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Password</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- <tr>
+                <th scope="row">1</th>
+                <td>{{patient.fname}}</td>
+                <td>{{patient.mname}}</td>
+                <td>{{patient.lname}}</td>
+                <td>{{patient.email}}</td>
+                <td>{{patient.password}}</td>
+                <td><button class="btn btn-success">Edit</button></td>
+                <td><button class="btn btn-danger">Delete</button></td>
+            </tr> -->
+                    <tr *ngFor="let p of patientArr">
+                        <td>{{p.pid}}</td>
+                        <td>{{p.fname}}</td>
+                        <td>{{p.mname}}</td>
+                        <td>{{p.lname}}</td>
+                        <td>{{p.email}}</td>
+                        <td>{{p.password}}</td>
+                        <td><button class="btn btn-success" (click)="edit(p.pid)">Edit</button></td>
+                        <td><button class="btn btn-danger" (click)="delete(p.pid)">Delete</button></td>
+                    </tr>
+                    <!-- <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td colspan="2">Larry the Bird</td>
+                <td>@twitter</td>
+            </tr> -->
+                </tbody>
+            </table>
+        </div>
+
+
+
+        <div *ngIf="addHospital">
+            <app-hospital></app-hospital>
+        </div>
+
+        <div *ngIf="getSpeciality">
+            <app-speciality></app-speciality>
+        </div>
+
+        <div *ngIf="addSpeciality">
+            <app-speciality> </app-speciality>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+.btn-group {
+    padding: 10px;
+}
+
+.hide {
+    display: none;
+}
+
+.navbar-brand:hover + .hide {
+    display: block;
+    color:blue;
+  }

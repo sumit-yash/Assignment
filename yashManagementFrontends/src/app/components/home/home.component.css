@@ -1,0 +1,29 @@
+/* .myClass{
+    background-image: url('../assets/Images/b1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover; */
+    /* object-position: bottom; */
+ /* }   */
+ 
+
+ /* .carousel-inner > .item {
+    height: 400px;
+ } */
+
+ .d-block{
+    /* object-fit: contain; */
+    /* object-position: center; */
+    height: 87vh;
+    /* overflow: hidden; */
+}
+
+.about{
+    padding: 10px;
+    text-align: center;
+ background-color: bisque;   
+}
+
+.contact{
+    text-align: center;
+ background-color: lightblue;  
+}
