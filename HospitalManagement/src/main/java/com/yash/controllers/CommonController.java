@@ -1,19 +1,13 @@
 package com.yash.controllers;
 
-import java.util.List;
-
-import javax.websocket.server.PathParam;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yash.entities.Login;
@@ -25,12 +19,15 @@ import com.yash.services.PatientService;
 public class CommonController {
 	@Autowired
 	PatientService patientService;
+	
+	private static final Logger loggger = LoggerFactory.getLogger(CommonController.class);
+
 
 	@PostMapping("/login")
-	public ResponseEntity<Patient> getLoginPatient(@RequestBody Login login) {
-		System.out.println("@controller email=" + login.getEmail() + " password= " + login.getPassword());
+	public ResponseEntity getLoginPatient(@RequestBody Login login) {
+		loggger.info("@controller email=" + login.getEmail() + " password= " + login.getPassword());
 		Patient patients = patientService.getPatientByEmailAndPassword(login.getEmail(), login.getPassword());
-		System.out.println("return= " + patients);
+		loggger.info("return= " + patients);
 		if (patients != null) {
 			return new ResponseEntity<Patient>(patients, HttpStatus.OK);
 		} else {

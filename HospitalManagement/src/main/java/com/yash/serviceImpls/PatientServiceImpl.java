@@ -4,16 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yash.dao.PatientDao;
 import com.yash.entities.Patient;
-import com.yash.exceptions.Exceptions;
 import com.yash.services.PatientService;
 
 @Service
 public class PatientServiceImpl implements PatientService {
+	
+	
+	private static final Logger logger = LoggerFactory.getLogger(PatientServiceImpl.class);
+
 
 	@Autowired
 	PatientDao patientDao;
@@ -22,11 +27,13 @@ public class PatientServiceImpl implements PatientService {
 	public Patient getPatient(int patientId) {
 		Patient patient = null;
 		try {
-			Optional<Patient> patientOptional = patientDao.findById(patientId);
-			patient = convertToPatient(patientOptional);
+			 patient = patientDao.findById(patientId).get();
+//			patient = patientOptional.get();
+			System.out.println("try patient="+patient);
 		} catch (Exception e) {
-			System.out.println("Error while getting patient");
+			logger.error("Error while getting patient");
 		}
+		logger.info("patient="+patient);
 		return patient;
 	}
 
@@ -49,7 +56,7 @@ public class PatientServiceImpl implements PatientService {
 		try {
 			patientList = patientDao.findAll();
 		} catch (Exception e) {
-			System.out.println("Error while gettingAllpatient");
+			logger.error("Error while gettingAllpatient");
 		}
 		return patientList;
 	}
@@ -58,9 +65,9 @@ public class PatientServiceImpl implements PatientService {
 	public Patient addPatient(Patient patient) {
 		Patient addedPatient = null;
 		Patient exisitngPatient = null;
-		System.out.println("patient=" + patient);
+		logger.info("patient=" + patient);
 		exisitngPatient = getPatientByEmailAndPassword(patient.getEmail(),patient.getPassword());
-		System.out.println("exisiting=" + exisitngPatient);
+		logger.info("exisiting=" + exisitngPatient);
 		try {
 			if (patient != null && exisitngPatient==null) {
 				addedPatient = patientDao.save(patient);
@@ -68,7 +75,7 @@ public class PatientServiceImpl implements PatientService {
 				throw new Exception("");
 			}
 		} catch (Exception e) {
-			System.out.println("Error while adding patient");
+			logger.error("Error while adding patient");
 		}
 		return addedPatient;
 	}
@@ -83,7 +90,7 @@ public class PatientServiceImpl implements PatientService {
 				message = "Patient Deleted Successfully";
 			}
 		} catch (Exception e) {
-			System.out.println("Error while deleting patient");
+			logger.error("Error while deleting patient");
 		}
 		return message;
 	}
@@ -104,7 +111,7 @@ public class PatientServiceImpl implements PatientService {
 				}
 			}
 		} catch (Exception e) {
-			System.out.println("Error while modifing patient");
+			logger.error("Error while modifing patient");
 		}
 		return modifiedPatient;
 	}
@@ -113,11 +120,11 @@ public class PatientServiceImpl implements PatientService {
 	public Patient getPatientByEmailAndPassword(String email, String password) {
 		 Patient patients = null;
 		try {
-			System.out.println("@service email=" + email + " password=" + password);
+			logger.info("@service email=" + email + " password=" + password);
 			patients = patientDao.findByEmailAndPassword(email, password);
-			System.out.println("@service patient=" + patients);
+			logger.info("@service patient=" + patients);
 		} catch (Exception e) {
-			System.out.println("error while getting patient by email and password");
+			logger.error("error while getting patient by email and password");
 		}
 		return patients;
 	}

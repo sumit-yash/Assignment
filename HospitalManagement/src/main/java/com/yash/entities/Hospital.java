@@ -1,21 +1,18 @@
 package com.yash.entities;
 
-import java.util.List;
-
 import javax.persistence.CascadeType;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "hospital")
@@ -29,14 +26,29 @@ public class Hospital {
 	
 	
 	private String hospitalName;
+	private String address;
+	private Integer bedCount;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name="speciality_id")
-	private List<Speciality> specialityList;
+//	@OneToMany(cascade = CascadeType.ALL)
+//	@JoinColumn(name="speciality_id")
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="cat_id")
+	private RoomCategory roomCategory;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name="speciality_id")
+	private Speciality speciality;
+	
+	
+	
+
+	
+	
+	
+	
+//	@OneToMany(cascade = CascadeType.ALL)
 //	@JoinColumn(name="roomCategory_id")
-	private List<RoomCategory> roomCategoryList;
 	
 	
 //	@OneToMany(cascade = CascadeType.ALL)

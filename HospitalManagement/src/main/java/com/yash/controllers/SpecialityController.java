@@ -1,55 +1,67 @@
 package com.yash.controllers;
 
-import java.util.Date;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yash.entities.Doctor;
-import com.yash.entities.Hospital;
-import com.yash.entities.RoomCategory;
 import com.yash.entities.Speciality;
-import com.yash.services.DoctorService;
-import com.yash.services.HospitalService;
-import com.yash.services.RoomCategoryService;
 import com.yash.services.SpecialityService;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/speciality")
 public class SpecialityController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(SpecialityController.class);
+
 
 	@Autowired
 	SpecialityService specialityService;
 
-	@GetMapping("/getSpeciality/{speciality}")
-	public List<Speciality> getSpeciality(@PathVariable("speciality") String specialityName) {
-		List<Speciality> speciality = specialityService.getSpeciality(specialityName);
-		for (Speciality sp : speciality) {
-//			int date = sp.getStartDate().getDate();
-//			int month=sp.getStartDate().getMonth();
-//			int year=sp.getStartDate().getYear();
-//			sp.setStartDate(new Date(year, month, date));
-//			int edate = sp.getEndDate().getDate();
-//			int emonth=sp.getEndDate().getMonth();
-//			int eyear=sp.getEndDate().getYear();
-//			sp.setEndDate(new Date(eyear, emonth, edate));
-			System.out.println("sp="+sp);
+	@GetMapping("/{speciality}")
+	public ResponseEntity getSpeciality(@PathVariable("speciality") String specialityName) {
+		logger.info("request specialityName= "+specialityName);
+		Speciality speciality =null;
+		for (Speciality ls : specialityService.getSpeciality(specialityName)) {
+			speciality=ls;
+		} 
+		if(speciality!= null) {
+			return new ResponseEntity<Speciality>(speciality,HttpStatus.OK);
+		}else {
+			return new ResponseEntity<Speciality>(HttpStatus.NOT_FOUND);
 		}
 		
-		return speciality;
 	}
 
 	@PostMapping("/addSpeciality")
-	public Speciality addSpeciality(@RequestBody Speciality speciality) {
+	public ResponseEntity addSpeciality(@RequestBody Speciality speciality) {
 		Speciality addSpeciality = specialityService.addSpeciality(speciality);
-		return addSpeciality;
+		if(addSpeciality!= null) {
+			return new ResponseEntity<Speciality>(addSpeciality,HttpStatus.OK);
+		}else {
+			return new ResponseEntity<Speciality>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	@GetMapping("/all")
+	public ResponseEntity getAllSpeciality(){
+		if(specialityService.getAllSpecialities()!= null) {
+			return new ResponseEntity<List<Speciality>>(specialityService.getAllSpecialities(),HttpStatus.OK);
+		}else {
+			return new ResponseEntity<List<Speciality>>(HttpStatus.NOT_FOUND);
+		}
+		
 	}
 
 }
